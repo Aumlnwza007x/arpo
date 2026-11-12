@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Custom design By Pixel</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fde3ee;--glow:rgba(255,255,255,.65);--field:#fff;--ink:#4a2740;--muted:#b08aa0;--accent:#c93f7e;--accent-ink:#fff;--line:#f5c6da;--err:#c0392b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3a2036;--glow:rgba(255,159,198,.14);--field:#4b2c46;--ink:#ffeef6;--muted:#c9a3b9;--accent:#ff9fc6;--accent-ink:#3a2036;--line:#6a4262;--err:#ff8a7a}}
+:root[data-theme="dark"]{--bg:#3a2036;--glow:rgba(255,159,198,.14);--field:#4b2c46;--ink:#ffeef6;--muted:#c9a3b9;--accent:#ff9fc6;--accent-ink:#3a2036;--line:#6a4262;--err:#ff8a7a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0%,var(--glow),transparent 50%),radial-gradient(circle at 90% 100%,var(--glow),transparent 45%),var(--bg);color:var(--ink);font-family:"Prompt","Noto Sans Thai",system-ui,sans-serif;line-height:1.6;min-height:100vh;position:relative;overflow-x:hidden}
+.deco{position:absolute;pointer-events:none;z-index:0}
+.dot{width:16px;height:16px;border-radius:50%;background:var(--accent)}
+.blob{border-radius:50%;background:var(--field);border:2px dotted var(--accent);opacity:.85}
+.badge{width:64px;height:64px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:var(--accent-ink);font-size:30px}
+main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:56px 20px 80px}
+h1{text-align:center;font-size:1.6rem;font-weight:600;margin:0 0 40px}
+.q{margin-bottom:34px}
+label,.lbl{display:block;font-weight:500;font-size:.95rem;margin-bottom:8px}
+.n{color:var(--accent);margin-right:6px}
+.req{color:var(--err);margin-left:3px}
+input,select,textarea{width:100%;font:inherit;font-size:1rem;color:var(--ink);background:var(--field);border:1.5px solid var(--line);border-radius:14px;padding:11px 14px}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+textarea{min-height:110px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.err{color:var(--err);font-size:.85rem;margin:6px 0 0;min-height:1.2em}
+[aria-invalid="true"]{border-color:var(--err)}
+.sizes{display:flex;flex-wrap:wrap;gap:10px}
+.sizes input{position:absolute;opacity:0;width:0;height:0}
+.sizes span{display:inline-block;min-width:56px;text-align:center;padding:9px 18px;border-radius:999px;background:var(--field);border:1.5px solid var(--line);cursor:pointer}
+.sizes input:checked+span{background:var(--accent);color:var(--accent-ink)}
+.sizes input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+button.submit{width:100%;font:inherit;font-weight:600;font-size:1.05rem;padding:14px;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink);cursor:pointer}
+button.submit:hover{filter:brightness(1.08)}
+.done{background:var(--field);border-radius:12px;padding:28px;text-align:center}
+.done h2{margin:0 0 6px}
+.done dl{text-align:left;margin:20px 0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+.done dt{color:var(--muted)}.done dd{margin:0;word-break:break-word}
+.ghost{font:inherit;background:none;border:1.5px solid var(--accent);color:var(--accent);padding:10px 20px;border-radius:8px;cursor:pointer}
+[hidden]{display:none!important}
+@media (max-width:640px){.row{grid-template-columns:1fr}.d-hide{display:none}h1{font-size:1.35rem}}
+</style>
+</head>
+<body>
+<div class="deco blob" style="width:220px;height:220px;left:-110px;top:-90px"></div>
+<div class="deco blob" style="width:200px;height:200px;right:-100px;top:-60px"></div>
+<div class="deco blob d-hide" style="width:180px;height:180px;left:-90px;bottom:60px"></div>
+<div class="deco blob d-hide" style="width:200px;height:200px;right:-100px;bottom:120px"></div>
+<div class="deco badge d-hide" style="left:40px;top:300px">♛</div>
+<div class="deco badge d-hide" style="right:40px;top:290px">♥</div>
+<div class="deco dot d-hide" style="left:90px;top:520px"></div>
+<div class="deco dot d-hide" style="right:90px;top:560px"></div>
+
+<main>
+<h1>Custom design By Pixel</h1>
+
+<form id="f" novalidate>
+  <div class="q">
+    <span class="lbl"><span class="n">1.</span>ชื่อ-นามสกุล<span class="req">*</span></span>
+    <div class="row">
+      <div><input id="fn" name="fn" placeholder="ชื่อ" aria-label="ชื่อ" autocomplete="given-name" required><p class="err"></p></div>
+      <div><input id="ln" name="ln" placeholder="นามสกุล" aria-label="นามสกุล" autocomplete="family-name" required><p class="err"></p></div>
+    </div>
+  </div>
+
+  <div class="q">
+    <label for="em"><span class="n">2.</span>อีเมล<span class="req">*</span></label>
+    <input id="em" name="em" type="email" placeholder="name@example.com" autocomplete="email" required>
+    <p class="err"></p>
+  </div>
+
+  <div class="q">
+    <label for="ph"><span class="n">3.</span>เบอร์โทรศัพท์</label>
+    <input id="ph" name="ph" type="tel" placeholder="08x-xxx-xxxx" autocomplete="tel">
+  </div>
+
+  <div class="q">
+    <label for="it"><span class="n">4.</span>ประเภทสินค้า<span class="req">*</span></label>
+    <select id="it" name="it" required>
+      <option value="">กรุณาเลือก</option>
+      <option>ป้ายขนาดโพสต์</option><option>ป้ายขนาดสตอรี่</option><option>กรอบสตอรี่</option>
+      <option>ลายน้ำ</option><option>ดิสโปร์ไฟล์</option><option>อื่นๆ</option>
+    </select>
+    <input id="ito" name="ito" placeholder="โปรดระบุประเภทงานที่ต้องการ" aria-label="ระบุประเภทสินค้าอื่นๆ" style="margin-top:12px" hidden>
+    <p class="err"></p>
+  </div>
+
+  <div class="q">
+    <label for="ds"><span class="n">5.</span>รายละเอียดแบบที่ต้องการ<span class="req">*</span></label>
+    <textarea id="ds" name="ds" placeholder="เช่น สี ลวดลาย ข้อความที่ต้องการสกรีน ตำแหน่งโลโก้ หรือลิงก์รูปตัวอย่าง"></textarea>
+    <p class="err"></p>
+  </div>
+
+  <div class="q">
+    <span class="lbl"><span class="n">6.</span>ไซส์<span class="req">*</span></span>
+    <div class="sizes" role="radiogroup" aria-label="ไซส์">
+      <label><input type="radio" name="sz" value="1:1"><span>1:1</span></label>
+      <label><input type="radio" name="sz" value="9:16"><span>9:16</span></label>
+      <label><input type="radio" name="sz" value="อื่นๆ"><span>อื่นๆ</span></label>
+    </div>
+    <input id="szo" name="szo" placeholder="โปรดระบุขนาดที่ต้องการ เช่น 4:5 หรือ 30×40 ซม." aria-label="ระบุขนาดอื่นๆ" style="margin-top:12px" hidden>
+    <p class="err" id="szerr"></p>
+  </div>
+
+  <div class="q">
+    <label for="qt"><span class="n">7.</span>จำนวน</label>
+    <input id="qt" name="qt" type="number" min="1" value="1" inputmode="numeric">
+  </div>
+
+  <button class="submit" type="submit">ส่งคำสั่งซื้อ</button>
+</form>
+
+<section class="done" id="ok" hidden aria-live="polite">
+  <h2>ส่งคำสั่งซื้อแล้ว</h2>
+  <p>เราจะติดต่อกลับทางอีเมลเพื่อยืนยันแบบและราคา</p>
+  <dl id="sum"></dl>
+  <button class="ghost" id="again" type="button">สั่งรายการใหม่</button>
+</section>
+</main>
+
+<script>
+const f=document.getElementById('f'),ok=document.getElementById('ok');
+const msg={fn:'กรุณากรอกชื่อ',ln:'กรุณากรอกนามสกุล',em:'กรุณากรอกอีเมลให้ถูกต้อง',it:'กรุณาเลือกประเภทสินค้า',ds:'กรุณาอธิบายแบบที่ต้องการ'};
+function setErr(el,t){const p=el.parentElement.querySelector('.err');if(p)p.textContent=t;if(t)el.setAttribute('aria-invalid','true');else el.removeAttribute('aria-invalid')}
+f.addEventListener('submit',e=>{
+  e.preventDefault();let first=null,bad=false;
+  for(const id of ['fn','ln','em','it','ds']){
+    const el=f.elements[id],v=el.value.trim();
+    const invalid=!v||(id==='em'&&!/^\S+@\S+\.\S+$/.test(v));
+    setErr(el,invalid?msg[id]:'');
+    if(invalid){bad=true;first=first||el}
+  }
+  if(f.it.value==='อื่นๆ'&&!f.ito.value.trim()){setErr(f.ito,'กรุณาระบุประเภทสินค้า');bad=true;first=first||f.ito}
+  const sz=f.querySelector('input[name=sz]:checked');
+  const other=sz&&sz.value==='อื่นๆ'&&!f.szo.value.trim();
+  document.getElementById('szerr').textContent=!sz?'กรุณาเลือกไซส์':other?'กรุณาระบุขนาดที่ต้องการ':'';
+  if(!sz){bad=true;first=first||f.querySelector('input[name=sz]')}
+  else if(other){bad=true;f.szo.setAttribute('aria-invalid','true');first=first||f.szo}
+  if(bad){first.focus();return}
+  const rows=[['ชื่อ',f.fn.value+' '+f.ln.value],['อีเมล',f.em.value],['เบอร์โทร',f.ph.value||'-'],['สินค้า',f.it.value==='อื่นๆ'?'อื่นๆ: '+f.ito.value.trim():f.it.value],['แบบ',f.ds.value],['ไซส์',sz.value==='อื่นๆ'?'อื่นๆ: '+f.szo.value.trim():sz.value],['จำนวน',(f.qt.value||1)]];
+  const dl=document.getElementById('sum');dl.innerHTML='';
+  rows.forEach(([k,v])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd)});
+  f.hidden=true;ok.hidden=false;window.scrollTo({top:0,behavior:'smooth'});
+});
+f.addEventListener('input',e=>{if(e.target.id&&e.target.parentElement.querySelector('.err'))setErr(e.target,'')});
+f.querySelectorAll('input[name=sz]').forEach(r=>r.addEventListener('change',()=>{const o=f.szo;o.hidden=f.querySelector('input[name=sz]:checked').value!=='อื่นๆ';if(!o.hidden)o.focus()}));
+f.it.addEventListener('change',()=>{const o=f.ito;o.hidden=f.it.value!=='อื่นๆ';if(!o.hidden)o.focus()});
+document.getElementById('again').onclick=()=>{f.reset();f.szo.hidden=true;f.ito.hidden=true;f.hidden=false;ok.hidden=true};
+</script>
+</body>
+</html>
